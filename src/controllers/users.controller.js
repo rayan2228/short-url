@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 const createUser = async (req, res) => {
   try {
     const { displayname, email, password } = req.body;
-    if ([displayname, email, password].some((value) => !value.trim())) {
+    if ([displayname, email, password].some((value) => !value?.trim())) {
       return res.status(400).json({ message: "All fields are required" });
     }
     const emailExists = await User.findOne({ email });
@@ -22,4 +22,4 @@ const createUser = async (req, res) => {
   }
 };
 
-export {createUser}
+export { createUser };
